@@ -149,7 +149,7 @@ function Form() {
   const { register, handleSubmit, control, setValue, getValues, formState: { errors } } = methods;
   const onSubmit: SubmitHandler<ProposalFormValues> = (formData) => {
     console.debug("📗 Nance.newProposal.onSubmit ->", {formData, metadata});
-
+    const timestamp = Math.floor(Date.now() / 1000)
     const payload = {
       ...formData.proposal,
       type: metadata.proposalType as ProposalType,
@@ -157,7 +157,7 @@ function Form() {
     };
     const typedValue = {
       path: getUploadUrl(space as string),
-      timestamp: Math.floor(Date.now() / 1000),
+      timestamp,
       payload: solidityKeccak256(["string"], [JSON.stringify(payload)])
     };
 
@@ -175,7 +175,7 @@ function Form() {
       const req: ProposalUploadRequest = {
         signature: {
           address: address,
-          timestamp: Math.floor(Date.now() / 1000),
+          timestamp,
           signature,
           typedValue
         },
