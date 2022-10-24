@@ -176,8 +176,7 @@ function Form() {
         signature: {
           address: address,
           timestamp,
-          signature,
-          typedValue
+          signature
         },
         proposal: {
           ...formData.proposal,
