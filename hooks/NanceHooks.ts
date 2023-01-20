@@ -34,14 +34,14 @@ export function useSpaceInfo(args: SpaceInfoRequest, shouldFetch: boolean = true
 
 export function useProposalsQuery(args: ProposalsQueryRequest, shouldFetch: boolean = true) {
     return useSWR<APIResponse<Proposal[]>, string>(
-        shouldFetch ? `${NANCE_API_URL}/${args.space}/query/${(args.cycle ? `?cycle=${args.cycle}` : '')}` : null,
+        shouldFetch ? `${NANCE_API_URL}/${args.space}/proposals/${(args.cycle ? `?cycle=${args.cycle}` : '')}` : null,
         jsonFetcher(),
     );
 }
 
 export function useProposalRequest(args: ProposalRequest, shouldFetch: boolean = true) {
     return useSWR<APIResponse<Proposal>, string>(
-        shouldFetch ? `${NANCE_API_URL}/${args.space}/proposal?hash=${args.hash}` : null,
+        shouldFetch ? `${NANCE_API_URL}/${args.space}/proposal/${args.hash}` : null,
         jsonFetcher(),
     );
 }
@@ -71,7 +71,7 @@ async function uploader(url: RequestInfo | URL, { arg }: { arg: ProposalUploadRe
 
 export function useProposalUpload(space: string, shouldFetch: boolean = true) {
     return useSWRMutation(
-        shouldFetch ? `${NANCE_API_URL}/${space}/upload` : null,
+        shouldFetch ? `${NANCE_API_URL}/${space}/proposals` : null,
         uploader,
     );
 }
