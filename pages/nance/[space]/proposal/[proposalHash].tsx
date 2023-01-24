@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import SiteNav from "../../../../components/SiteNav";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-import { useProposalRequest } from "../../../../hooks/NanceHooks";
-import remarkGfm from 'remark-gfm';
+import { useProposalRequest, useProposalDelete } from "../../../../hooks/NanceHooks";
+import remarkGfm from "remark-gfm";
+import { useSigner } from "wagmi";
+import { JsonRpcSigner } from "@ethersproject/providers";
+import { signPayload } from "../../../../libs/signer";
+import { ProposalDeleteRequest } from "../../../../models/NanceTypes";
 
 export default function SnapshotProposal() {
     // router
@@ -12,6 +17,39 @@ export default function SnapshotProposal() {
       
     const { data, isLoading, error } = useProposalRequest({ space: space as string, hash: proposalHash as string }, router.isReady);
     const proposalData = data?.data;
+
+    // hooks
+    const { isMutating, error: uploadError, trigger, data: deleteData, reset } = useProposalDelete({ space: space as string, hash: proposalHash as string }, router.isReady);
+    const { data: signer, isError, isLoading: signerIsLoading } = useSigner()
+    const jrpcSigner = signer as JsonRpcSigner;
+
+    // state
+    const [signing, setSigning] = useState(false);
+    const [signError, setSignError] = useState(undefined);
+
+    const deleteProposal = () => {
+        const payload = {
+            hash: proposalData.hash
+        };
+
+        setSigning(true);
+        signPayload(jrpcSigner, space as string, 'delete', payload).then((signature) => {
+            setSigning(false);
+
+            // send to API endpoint
+            reset();
+            const req: ProposalDeleteRequest = {
+              signature,
+              ...payload
+            }
+            console.debug("📗 Nance.deleteProposal ->", req);
+            return trigger(req);
+        }).then(res => router.push(`/nance/${space as string}/proposal/${res.data.hash}`)).catch((err) => {
+            setSigning(false);
+            setSignError(err);
+            console.warn("📗 Nance.deleteProposal.onSignError ->", err);
+        });
+    };
 
     return (
         <>
@@ -23,7 +61,7 @@ export default function SnapshotProposal() {
                     <div className="max-w-3xl px-4 sm:px-6 md:flex md:items-center md:justify-start md:space-x-5 lg:max-w-7xl lg:px-8">
                         <div className="flex items-center space-x-5">
                             <div>
-                                <h1 className="text-2xl font-bold text-gray-900">{proposalData?.proposalId|| '#TBD'} - {proposalData?.title}</h1>
+                                <h1 className="text-2xl font-bold text-gray-900">{proposalData?.proposalId || '#TBD'} - {proposalData?.title}</h1>
                             </div>
                         </div>
                         <div className="justify-stretch mt-6 flex flex-col-reverse space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-y-0 sm:space-x-3 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
@@ -68,6 +106,10 @@ export default function SnapshotProposal() {
                             </section>
                         </div>
                     </div>
+                <button type="button" className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-2 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100 ml-2 mb-1"
+                onClick={() => { deleteProposal() }}>
+                    {signing ? (isMutating ? "Submitting..." : "Signing...") : "Delete"}
+                </button>
                 </main>
             </div>
         </>

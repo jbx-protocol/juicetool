@@ -17,7 +17,7 @@ import "@uiw/react-markdown-preview/markdown.css";
 import dynamic from "next/dynamic";
 import useLocalStorage from "../../../hooks/LocalStorage";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
-import { useAccount, useSigner } from "wagmi";
+import { useSigner } from "wagmi";
 import { JsonRpcSigner } from "@ethersproject/providers";
 import { signPayload } from "../../../libs/signer";
 

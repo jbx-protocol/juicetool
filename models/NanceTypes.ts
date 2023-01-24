@@ -76,6 +76,8 @@ export interface ProposalUploadRequest extends SignatureRequest {
     "notification">;
 }
 
+export type ProposalDeleteRequest = SignatureRequest & { hash: string }
+
 // from https://github.com/jigglyjams/nance-ts/blob/main/src/types.ts
 type ProposalType = 'Payout' | 'ReservedToken' | 'ParameterUpdate' | 'ProcessUpdate' | 'CustomTransaction';
 

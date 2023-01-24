@@ -8,6 +8,7 @@ import {
     ProposalRequest,
     ProposalUploadRequest,
     FetchReconfigureRequest,
+    ProposalDeleteRequest,
     SpaceInfo,
     Proposal,
     FetchReconfigureData,
@@ -69,10 +70,33 @@ async function uploader(url: RequestInfo | URL, { arg }: { arg: ProposalUploadRe
     return json
 }
 
+async function deleter(url: RequestInfo | URL, { arg }: { arg: ProposalDeleteRequest }) {
+    const res = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(arg)
+    })
+    const json: APIResponse<ProposalUploadPayload> = await res.json()
+    if (json.success === false) {
+        throw new Error(`An error occurred while uploading the data: ${json?.error}`)
+    }
+
+    return json
+}
+
 export function useProposalUpload(space: string, shouldFetch: boolean = true) {
     return useSWRMutation(
         shouldFetch ? `${NANCE_API_URL}/${space}/proposals` : null,
         uploader,
+    );
+}
+
+export function useProposalDelete(args: ProposalRequest, shouldFetch: boolean = true) {
+    return useSWRMutation(
+        shouldFetch ? `${NANCE_API_URL}/${args.space}/proposal/${args.hash}` : null,
+        deleter,
     );
 }
 
