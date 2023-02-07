@@ -14,12 +14,6 @@ const tools: ContentLink[] = [
     description: "another way to see Safe Txns.",
     link: "/safe/0xAF28bcB48C40dBC86f52D459A6562F658fc94B1e"
   },
-  {
-    id: 3,
-    title: "Juicebox Reconfiguration Compare",
-    description: "import/export hex data, preview with basic interface.",
-    link: "/juicebox"
-  },
 ]
 
 interface ContentLink {

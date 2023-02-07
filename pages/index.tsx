@@ -21,7 +21,7 @@ const posts: PostCard[] = [
     },
     {
         title: 'Automate your governance system',
-        href: '/nance/juicebox',
+        href: 'https://www.jbdao.org/',
         category: { name: 'Governance', href: '#' },
         description:
             'Nance is a tool for automating your governance system. It can integrate with Notion, Discord, Snapshot and Juicebox to create a seamless experience for your community. Check repo on https://github.com/jigglyjams/nance-ts.',
@@ -38,7 +38,7 @@ const posts: PostCard[] = [
     },
     {
         title: 'Visualize the diff of two reconfiguration',
-        href: '/juicebox',
+        href: 'https://www.jbdao.org/juicebox',
         category: { name: 'Tool', href: '#' },
         description:
             'Ever wanted to see the diff of two reconfiguration for Juicebox project? Now you can with the Reconfiguration Diff tool. Just select/load new reconfiguration and see the diff. In a strucutal&typed way.',
