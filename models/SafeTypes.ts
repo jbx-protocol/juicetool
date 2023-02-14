@@ -52,3 +52,19 @@ export interface QueueSafeTransaction extends SafeTransactionPartial {
     transactionHash: string;
     signature: string;
 }
+
+export interface SafeBalanceUsdResponse {
+    tokenAddress: string | null;
+    token: {
+        name: string;
+        symbol: string;
+        decimals: number;
+        logoUri: string;
+    } | null
+    balance: string;
+    ethValue: string;
+    timestamp: string;
+    fiatBalance: string;
+    fiatConversion: string;
+    fiatCode: string;
+}

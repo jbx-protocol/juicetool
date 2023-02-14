@@ -33,3 +33,22 @@ export function useDistributionLimit(
             : null,
     })
 }
+
+// export default function useUsedDistributionLimit({
+//     projectId,
+//     terminal,
+//     fundingCycleNumber,
+//   }: {
+//     projectId: number | undefined
+//     terminal: string | undefined
+//     fundingCycleNumber: BigNumber | undefined
+//   }) {
+//     return useV2ContractReader<BigNumber>({
+//       contract: V2V3ContractName.JBSingleTokenPaymentTerminalStore,
+//       functionName: 'usedDistributionLimitOf',
+//       args:
+//         terminal && projectId && fundingCycleNumber
+//           ? [terminal, projectId, fundingCycleNumber]
+//           : null,
+//     })
+//   }

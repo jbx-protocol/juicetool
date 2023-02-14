@@ -18,7 +18,7 @@ export default function useTotalSupplyOfProject({
     } else if (version === 2) {
         contract = getJBTokenStore(provider);
     } else if (version === 3) {
-        contract = useContract({ address: JBTokenStoreV3.address, abi: JBTokenStoreV3.abi });
+        contract = useContract({ address: JBTokenStoreV3.address, abi: JBTokenStoreV3.abi, signerOrProvider: provider });
     }
 
     return useContractReadValue<BigNumber>({

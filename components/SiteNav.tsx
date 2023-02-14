@@ -20,6 +20,7 @@ export default function SiteNav({ pageTitle, description, image, withWallet }: S
         { name: 'Logbook', href: '/logbook' },
         { name: 'Snapshot Plus', href: '/snapshot' },
         { name: 'Juicebox Center', href: '/center' },
+        { name: 'JuiceboxDAO Treasury', href: '/treasury' },
     ]
 
     const meta = {
