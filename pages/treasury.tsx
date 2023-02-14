@@ -117,7 +117,7 @@ export default function TreasuryPage() {
                     </div>
 
                     <div className="col-span-2">
-                        <Entries title="Payouts" keyTitle="Account" entries={payouts} keyRender={(k) => [keyOfSplit(k), <PayoutSplitName mod={k} />]} />
+                        <Entries title="Payouts" keyTitle="Account" entries={payouts} keyRender={(k) => [keyOfSplit(k), <PayoutSplitName key={keyOfSplit(k)} mod={k} />]} />
                     </div>
 
                     <div className="col-span-1">
