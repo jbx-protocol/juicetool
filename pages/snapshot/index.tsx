@@ -63,7 +63,7 @@ export default function SnapshotIndexPage({ allSpaces }: { allSpaces: AllSpacesR
         
     return (
         <>
-            <SiteNav pageTitle="Snapshot Plus Explore" withWallet />
+            <SiteNav pageTitle="Snapshot Voting Helper - Explore" withWallet />
 
             <div className="flex justify-center bg-white mb-6 py-6">
                 <div className="max-w-7xl w-full">

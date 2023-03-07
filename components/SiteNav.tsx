@@ -18,7 +18,7 @@ export default function SiteNav({ pageTitle, description, image, withWallet }: S
     const navigation = [
         { name: 'Home', href: '/' },
         { name: 'Logbook', href: '/logbook' },
-        { name: 'Snapshot Plus', href: '/snapshot' },
+        { name: 'Voting helper', href: '/snapshot' },
         { name: 'Juicebox Center', href: '/center' },
         { name: 'JuiceboxDAO Treasury', href: '/treasury' },
     ]

@@ -7,7 +7,7 @@ const posts: PostCard[] = [
         href: '/snapshot',
         category: { name: 'Governance', href: '#' },
         description:
-            'Have you ever wanted to search for proposals? Or filter by status? Or see more stats? Now you can use Snapshot Plus.',
+            'Have you ever wanted to search for proposals? Or filter by status? Or see more stats? Now you can use Snapshot Voting Helper.',
         date: 'Sep 15, 2022',
         datetime: '2022-09-15',
         imageUrl:
