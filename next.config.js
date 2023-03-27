@@ -25,6 +25,11 @@ const nextConfig = {
         destination: 'https://www.jbdao.org/juicebox',
         permanent: true,
       },
+      {
+        source: '/treasury',
+        destination: 'https://www.jbdao.org/treasury',
+        permanent: true,
+      },
     ]
   }
 }
