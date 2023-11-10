@@ -21,8 +21,8 @@ export default function JuiceCrowd() {
   return (
     <>
       <SiteNav
-        pageTitle="Funding"
-        description="Projects funded by JuiceboxDAO"
+        pageTitle="JuiceCrowd projects"
+        description="Projects submitted on JuiceCrowd"
         image="/images/banny_tutorial.png"
       />
       <div className="relative bg-gray-50 px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pb-28 lg:pt-24">

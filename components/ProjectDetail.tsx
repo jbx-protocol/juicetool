@@ -47,7 +47,12 @@ export default function ProjectDetail({
                       as="h3"
                       className="text-base font-semibold leading-6 text-gray-900"
                     >
-                      {project?.["Project title"]}
+                      <a
+                        href={project?.["Official link"]}
+                        className="underline"
+                      >
+                        {project?.["Project title"]}
+                      </a>
                     </Dialog.Title>
 
                     <div className="mt-2 text-left">
