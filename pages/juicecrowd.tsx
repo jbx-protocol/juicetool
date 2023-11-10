@@ -119,7 +119,7 @@ const projects = [
     "Project logo":
       "https://api.typeform.com/responses/files/a70f6451d1c3d6019ab7277de20fded8a657ffedd3a2caab7b5a3f476b56e399/EJX_logo_black_2048__1___2_.png",
     "Video or image":
-      "https://www.veed.io/view/b202aab6-dd90-4b25-ba84-86e4f6f5789b?sharingWidget=true&panel=share",
+      "https://www.veed.io/embed/b202aab6-dd90-4b25-ba84-86e4f6f5789b",
   },
   {
     "Owner name": "Jared",

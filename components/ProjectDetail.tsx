@@ -108,6 +108,37 @@ export default function ProjectDetail({
                       >
                         Video or image
                       </a>
+
+                      {project?.["Video or image"].startsWith(
+                        "https://www.veed.io",
+                      ) && (
+                        <iframe
+                          src={project?.["Video or image"]}
+                          width="450"
+                          height="450"
+                          title="EyeJack X"
+                        ></iframe>
+                      )}
+
+                      {(project?.["Video or image"].endsWith(".mp4") ||
+                        project?.["Video or image"].endsWith(".mov")) && (
+                        <video
+                          className=""
+                          controls
+                          height={450}
+                          width={450}
+                          src={project?.["Video or image"]}
+                        />
+                      )}
+                      {(project?.["Video or image"].endsWith(".jpg") ||
+                        project?.["Video or image"].endsWith(".png") ||
+                        project?.["Video or image"].endsWith(".gif")) && (
+                        <img
+                          className=""
+                          src={project?.["Video or image"]}
+                          alt="project demo image"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
